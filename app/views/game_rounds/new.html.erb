@@ -1,5 +1,6 @@
 Hello, love.
 
-<%= form_tag "/update", method: get, do %>
-  <%= link_to "Next round", next_round_path  %>
+<%= form_tag "/update" do %>
+  <%= text_field_tag(:player) %>
+  <%= submit_tag "Next round" %>
 <%end%>
