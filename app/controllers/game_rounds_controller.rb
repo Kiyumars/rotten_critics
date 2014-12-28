@@ -9,6 +9,7 @@ class GameRoundsController < ApplicationController
 	end
 
 	def update
+		@player = params[:player]
 	end
 
 	def show
