@@ -6,8 +6,8 @@ class GameRoundsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get next_round" do
-    get :update
+  test "should get show" do
+    get :show
     assert_response :success
   end
 end
