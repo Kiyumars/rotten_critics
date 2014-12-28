@@ -24,6 +24,6 @@ class GameRoundsController < ApplicationController
 	end
 
 	def show
-		@players = Player.first.name
+		@players = Player.all
 	end
 end
