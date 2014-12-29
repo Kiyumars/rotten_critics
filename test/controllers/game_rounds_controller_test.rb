@@ -3,7 +3,7 @@ require 'test_helper'
 class GameRoundsControllerTest < ActionController::TestCase
 
 	def setup
-		players = ["Larry, Curly, Moe"]
+		@valid_player_names = "Larry, Curly, Moe"
 	end
 
   test "should get new_game" do
@@ -12,7 +12,7 @@ class GameRoundsControllerTest < ActionController::TestCase
   end
 
   test "should get create" do
-  	post :create, :players => "Larry, Curly, Moe"
+  	post :create, :players => @valid_player_names
   	assert_redirected_to allplayers_path
   end
 
