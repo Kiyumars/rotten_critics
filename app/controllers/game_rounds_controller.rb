@@ -10,7 +10,7 @@ class GameRoundsController < ApplicationController
 			if new_player.save
 				next
 			else
-				render 'new'
+				redirect_to'new'
 			end
 		end
 		redirect_to allplayers_path
