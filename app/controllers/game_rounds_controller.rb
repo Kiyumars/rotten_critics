@@ -11,6 +11,7 @@ class GameRoundsController < ApplicationController
 				next
 			else
 				redirect_to'new'
+				return
 			end
 		end
 		redirect_to allplayers_path
