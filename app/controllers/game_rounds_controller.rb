@@ -5,8 +5,10 @@ class GameRoundsController < ApplicationController
 	def create
 		game_id =  ('a'..'z').to_a.shuffle[0..7].join
 		players = params[:players].titleize.scan(/\w+[a-zA-Z]/).uniq
+		actor = params["actor"]
 
 		if players.blank?
+			flash[:danger] = "Please enter valid names with only letters"
 			redirect_to new_game_path
 			return
 		end
