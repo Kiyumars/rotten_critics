@@ -4,7 +4,7 @@ class GameRoundsController < ApplicationController
 
 	def create
 		game_id =  ('a'..'z').to_a.shuffle[0..7].join
-		players = params[:players].split(",").map(&:strip)
+		players = params[:players].scan(/\w+[a-zA-Z]/).uniq
 		players.each do |player|
 			new_player = Player.new(name: player, game_id: game_id, score: 0)
 			if new_player.save
