@@ -13,7 +13,6 @@ class GameRoundsControllerTest < ActionController::TestCase
 
   test "should get create" do
   	post :create, :players => "Larry, Curly, Moe"
-  	assert_not(assert_redirected_to new_game_path)
   	assert_redirected_to allplayers_path
   end
 
