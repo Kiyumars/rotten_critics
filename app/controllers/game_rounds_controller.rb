@@ -4,15 +4,16 @@ class GameRoundsController < ApplicationController
 
 	def create
 		game_id =  ('a'..'z').to_a.shuffle[0..7].join
-		players = params[:players].scan(/\w+[a-zA-Z]/).uniq
+		players = params[:players].titleize.scan(/\w+[a-zA-Z]/).uniq
+
+		if players.blank?
+			redirect_to new_game_path
+			return
+		end
+
 		players.each do |player|
 			new_player = Player.new(name: player, game_id: game_id, score: 0)
-			if new_player.save
-				next
-			else
-				redirect_to'new'
-				return
-			end
+			new_player.save
 		end
 		redirect_to allplayers_path
 	end

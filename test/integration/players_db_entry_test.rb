@@ -34,6 +34,11 @@ class PlayersDbEntryTest < ActionDispatch::IntegrationTest
   	end
   end
 
+  test "should redirect to new_game_path if player name is blank" do
+  	post players_path, :players => @blank_name
+  	assert_redirected_to new_game_path
+  end
+
   test "should enter only valid names, ignore invalid names" do
   	assert_difference "Player.count", 2 do
   		post players_path, :players => @one_invalid_name
