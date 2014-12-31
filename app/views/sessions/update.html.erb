@@ -1,2 +1,6 @@
-<h1>Sessions#update</h1>
-<p>Find me in app/views/sessions/update.html.erb</p>
+<p>The scores have been updated</p> <br>
+<% session[:players_scores].each do |player| %>
+  <%= player[0] %> has <%= player[1] %> <br>
+<% end %>
+
+<%= link_to "Log out", destroy_session_path, method: :delete %>

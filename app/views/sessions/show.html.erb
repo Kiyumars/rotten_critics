@@ -2,10 +2,10 @@ Hello, the game id is  <%= session["game_id"] %> <br>
 
 Update the score.
 
-<%= form_for(:session, url: create_session_path) do |f| %>
+<%= form_for(:session, url: score_update_path, method: :patch) do |f| %>
   <% session[:players_names].each do |player| %>
     <%= f.label player %>
-    <%= f.text_field player, class: 'form-control', placeholder: "42" %>
+    <%= f.text_field player, value: "42", class: 'form-control', placeholder: "42" %>
     <% end %>
     <%= f.submit "Update the score", class: "btn btn-primary" %>
 <% end %>

@@ -13,6 +13,12 @@ class SessionsController < ApplicationController
   end
 
   def update
+  	correct_score = 92
+
+  	session[:players_names].each do |player|
+  		session[:players_scores][player] += (correct_score - params[:session][player].to_i).abs
+  	end
+
   end
 
   def destroy
