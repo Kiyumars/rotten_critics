@@ -18,8 +18,8 @@ class SessionsControllerTest < ActionController::TestCase
     assert_redirected_to show_movie_path
   end
 
-  test "should get update" do
-    get :update
+  test "should patch update" do
+    patch :update
     assert_response :success
   end
 

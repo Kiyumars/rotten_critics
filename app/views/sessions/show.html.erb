@@ -1,3 +1,15 @@
-Hello, the game id is  <%= session["players_scores"] %>
+Hello, the game id is  <%= session["game_id"] %> <br>
+
+Update the score.
+
+<%= form_for(:session, url: create_session_path) do |f| %>
+  <% session[:players_names].each do |player| %>
+    <%= f.label player %>
+    <%= f.text_field player, class: 'form-control', placeholder: "42" %>
+    <% end %>
+    <%= f.submit "Update the score", class: "btn btn-primary" %>
+<% end %>
+
+
 
 <%= link_to "Log out", destroy_session_path, method: :delete %>

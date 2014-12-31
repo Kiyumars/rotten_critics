@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   get "new_session" 			=> "sessions#new"
   post "create_session" 	=> "sessions#create"
   get "show_movie"			=> "sessions#show"
-  put "score_update"		=> "sessions#update"
+  patch "score_update"		=> "sessions#update"
   delete "destroy_session" => "sessions#destroy"
 end
