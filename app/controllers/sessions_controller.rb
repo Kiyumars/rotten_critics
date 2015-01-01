@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   	correct_score = 92
 
   	session[:players_names].each do |player|
-  		session[:players_scores][player] += (correct_score - params[:session][player].to_i).abs
+  		session[:players_scores][player] += (correct_score - params[:players_guesses][player].to_i).abs
   	end
 
   end
