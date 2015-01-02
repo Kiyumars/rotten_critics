@@ -1,0 +1,8 @@
+Enter the name of the actor. <br>
+<%= form_tag(create_actor_path) do %>
+  <%= label_tag :actor_name, "Name of actor:" %>
+  <%= text_field_tag :actor_name, "Al Pacino" %>
+  <%= submit_tag "Submit actor name" %>
+<% end %>
+
+The TMDB number is <%= @tmdb %>

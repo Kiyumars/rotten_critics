@@ -12,14 +12,17 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get create" do
+  test "should post create" do
     post :create, session: { players: @players_string,
                                          actor: @actor_string }
     assert_redirected_to show_movie_path
   end
 
   test "should patch update" do
-    patch :update
+    players_guesses = Hash.new
+    players_guesses["Tom"] = "42"
+    patch :update, players_guesses: players_guesses
+
     assert_response :success
   end
 

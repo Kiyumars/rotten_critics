@@ -10,4 +10,10 @@ Rails.application.routes.draw do
   get "show_movie"			=> "sessions#show"
   patch "score_update"		=> "sessions#update"
   delete "destroy_session" => "sessions#destroy"
+
+  get "new_actor"         => "actors#new"
+  post "create_actor"     => "actors#create"
+  get "show_actor"        => "actors#show"
+  delete "destroy_actor"  => "actor#destroy"
+
 end
