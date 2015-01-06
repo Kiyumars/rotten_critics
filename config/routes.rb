@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "sessions#new"
+  root "actors#new"
   get "new_game"        	=> "game_rounds#new"
   post "players"        	=> "game_rounds#create"
   get "allplayers"     		=> "game_rounds#show"

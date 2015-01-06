@@ -1,7 +1,6 @@
-Hello, the game id is  <%= session["game_id"] %> <br>
+A sessions cookie has been created. <br>
 
-Update the score.
-
+Now guess what percentage of critics on rottentomatoes liked <i>Guardians of the glaxy</i> <br>
 <%= form_for(:players_guesses, url: score_update_path, method: :patch) do |f| %>
   <% session[:players_names].each do |player| %>
     <%= f.label player %>

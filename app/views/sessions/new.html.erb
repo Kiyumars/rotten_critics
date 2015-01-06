@@ -1,13 +1,10 @@
-<p>Let's play a game. Enter the names of all players and the name of the actor or actress.</p>
+<p>Let's play a game session cookie. Enter the names of all players.</p>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(:session, url: create_session_path) do |f| %>
 
       <%= f.label :players %>
-      <%= f.text_field :players, value: 'Tom, Dick, Harry', class: 'form-control', placeholder: "Tom, Dick, Harry" %>
-
-      <%= f.label :actor %>
-      <%= f.text_field :actor, value: 'Al Pacino', class: 'form-control', placeholder: "Al Pacino" %>
+      <%= f.text_field :players, value: nil, placeholder: 'e.g Tom, Dick, Harry', class: 'form-control', placeholder: "Tom, Dick, Harry" %>
 
       <%= f.submit "Start the game", class: "btn btn-primary" %>
     <% end %>
