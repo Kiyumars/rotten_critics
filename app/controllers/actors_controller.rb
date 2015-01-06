@@ -20,10 +20,10 @@ class ActorsController < ApplicationController
     @filmography["cast"].each do |movie_id|
       @film_list.push(movie_id['id'].to_s)
     end
-    actor = Actor.new( name: @actor_json["name"], tmdb_id: @actor_json["id"],
-                        imdb_id: @actor_json["imdb_id"], bio: @actor_json["biography"],
-                        birthday: @actor_json["birthday"], movies: @film_list)
-    actor.save
+    # actor = Actor.new( name: @actor_json["name"], tmdb_id: @actor_json["id"],
+    #                     imdb_id: @actor_json["imdb_id"], bio: @actor_json["biography"],
+    #                     birthday: @actor_json["birthday"], movies: @film_list)
+    # actor.save
   end
 
   def show
