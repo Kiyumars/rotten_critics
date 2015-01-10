@@ -15,9 +15,14 @@ class ActorsController < ApplicationController
 
     actor_in_db = Actor.find_by(:name => params[:actor_name].downcase)
     if actor_in_db.nil?
+      if !check_if_actor_exists(params[:actor_name])
+        flash[:danger] = "Actor does not exist. Try again."
+        redirect_to new_actor_path
+        return
+      end
       create_new_actor_model(params[:actor_name].downcase)
 
-    elsif actor_in_db
+    else
       @actor = actor_in_db
     end
   end
@@ -38,6 +43,10 @@ def create_new_actor_model(actor_name)
       actor_name = params[:actor_name].downcase.scan(/\w+[a-zA-Z]/)
       actor_url =  prepare_actor_url_parameter_for_tmdb(actor_name)
       actor_object = search_tmdb_for_actor_and_return_filmography(actor_url)
+      if actor_object.nil?
+        redirect_to new_actor_path
+        return nil
+      end
       @actor_json, @biography, @filmography = actor_object
       @film_list = Array.new
       @filmography["cast"].each do |movie_id|
@@ -47,6 +56,17 @@ def create_new_actor_model(actor_name)
                           imdb_id: @actor_json["imdb_id"], bio: @actor_json["biography"],
                           birthday: @actor_json["birthday"], movies: @film_list)
       @actor.save
+end
+
+def check_if_actor_exists(actor_name)
+  actor_name = params[:actor_name].downcase.scan(/\w+[a-zA-Z]/)
+  actor_parameter =  prepare_actor_url_parameter_for_tmdb(actor_name)
+  search_actor = request_tmdb_json("search/person", actor_parameter)
+  if search_actor["total_results"] < 1
+    return false
+  else
+    return search_actor
+  end
 end
 
 def search_tmdb_for_actor_and_return_filmography(actor_parameter)

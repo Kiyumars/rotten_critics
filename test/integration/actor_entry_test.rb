@@ -18,4 +18,19 @@ class ActorEntryTest < ActionDispatch::IntegrationTest
   	end
   	assert_response :success
   end
+
+  test "Enter new name, then reenter same name" do
+  	assert_difference "Actor.count", 1 do
+  		post create_actor_path, :actor_name => "Nicolas Cage"
+  	end
+  	assert_no_difference "Actor.count" do
+  		post create_actor_path, :actor_name => "Nicolas Cage"
+  	end
+  end
+
+  test "redirect to root if non-existent name entered" do
+    post create_actor_path, :actor_name => "Ermagehrd Goofbumpths"
+    assert_redirected_to new_actor_path
+    assert_equal flash[:danger], "Actor does not exist. Try again."
+  end
 end
