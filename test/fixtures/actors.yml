@@ -1,10 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  tmdb_id: MyString
-  imdb_id: MyString
-  bio: MyText
+Pacino:
+  name: al pacino
+  tmdb_id: "22"
+  imdb_id: "3232"
+  bio: "ndajndsjnasdjs"
   movies: MyString
   birthday: 2015-01-02
 

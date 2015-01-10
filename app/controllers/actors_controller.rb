@@ -13,17 +13,20 @@ class ActorsController < ApplicationController
   def create
 
     actor_name = params[:actor_name].downcase.scan(/\w+[a-zA-Z]/)
-    actor_url =  prepare_actor_url_parameter_for_tmdb(actor_name)
-    @actor_object = search_tmdb_for_actor_and_return_filmography(actor_url)
-    @actor_json, @biography, @filmography = @actor_object
-    @film_list = Array.new
-    @filmography["cast"].each do |movie_id|
-      @film_list.push(movie_id['id'].to_s)
+    @actor = Actor.find_by(:name => params[:actor_name].downcase)
+    if @actor.nil?
+      actor_url =  prepare_actor_url_parameter_for_tmdb(actor_name)
+      actor_object = search_tmdb_for_actor_and_return_filmography(actor_url)
+      @actor_json, @biography, @filmography = actor_object
+      @film_list = Array.new
+      @filmography["cast"].each do |movie_id|
+        @film_list.push(movie_id['id'].to_s)
+      end
+      actor = Actor.new( name: @actor_json["name"].downcase, tmdb_id: @actor_json["id"],
+                          imdb_id: @actor_json["imdb_id"], bio: @actor_json["biography"],
+                          birthday: @actor_json["birthday"], movies: @film_list)
+      actor.save
     end
-    actor = Actor.new( name: @actor_json["name"], tmdb_id: @actor_json["id"],
-                        imdb_id: @actor_json["imdb_id"], bio: @actor_json["biography"],
-                        birthday: @actor_json["birthday"], movies: @film_list)
-    actor.save
   end
 
   def show
