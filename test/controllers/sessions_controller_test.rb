@@ -21,8 +21,12 @@ class SessionsControllerTest < ActionController::TestCase
   test "should patch update" do
     players_guesses = Hash.new
     players_guesses["Tom"] = "42"
-    patch :update, players_guesses: players_guesses
 
+    post :create, session: { players: @players_string,
+                                         actor: @actor_string }
+    assert_redirected_to show_movie_path
+
+    patch :update, players_guesses: players_guesses
     assert_response :success
   end
 

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get "show_actor"        => "actors#show"
   delete "destroy_actor"  => "actor#destroy"
 
+
 end

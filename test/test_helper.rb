@@ -1,4 +1,5 @@
 ENV['RAILS_ENV'] ||= 'test'
+tmdb_key = ENV['tmdb_key']
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require "minitest/reporters"

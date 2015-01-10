@@ -58,7 +58,6 @@ def request_tmdb_json(request_type_url, extra_url='')
   request_url += extra_url
 
   resp = Net::HTTP.get_response(URI(request_url))
-  puts JSON(resp.body)
   return JSON(resp.body)
 end
 
