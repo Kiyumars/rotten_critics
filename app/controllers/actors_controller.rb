@@ -43,14 +43,19 @@ class ActorsController < ApplicationController
     actor_filmography.each do |movie_id|
       movie = prepare_movie_hash(movie_id)
       if !movie.nil?
-        Movie.create(:imdb_id => movie["imdb_id"].to_s, :tmdb_id => movie["id"].to_s,
-                      :overview => movie["overview"], :tagline => movie["tagline"],
-                      :title => movie["title"], :poster_path => movie["poster_path"],
+        Movie.create(:imdb_id => movie["imdb_id"].to_s,
+                      :tmdb_id => movie["id"].to_s,
+                      :overview => movie["overview"],
+                      :tagline => movie["tagline"],
+                      :title => movie["title"],
+                      :poster_path => movie["poster_path"],
                       :critics_score => movie["critics_score"],
                       :audience_score => movie["audience_score"],
-                      :cast => movie["cast"], :directors => movie["directors"],
+                      :cast => movie["cast"],
+                      :directors => movie["directors"],
                       :screenwriters => movie["screenwriters"],
-                      :trailer => movie["trailer"])
+                      :trailer => movie["trailer"],
+                      :release_date => movie["release_date"])
       end
     end
   end
