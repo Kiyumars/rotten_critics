@@ -258,11 +258,14 @@ def check_if_six_reviews_exist(rt_movie_id)
 
   resp = Net::HTTP.get_response(URI(request_url))
   total_reviews = JSON(resp.body)['total']
-
-  if total_reviews < 6 then
+  begin
+    if total_reviews < 6 then
+      return false
+    else
+      return true
+    end
+  rescue NoMethodError
     return false
-  else
-    return true
   end
 
 end
