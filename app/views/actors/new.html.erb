@@ -1,12 +1,6 @@
-Let's API call to themoviedb.org, get an actor's biography, and create an actor model. <br><br>
-
 Enter the name of the actor/actress. <br>
 <%= form_tag(create_actor_path) do %>
   <%= label_tag :actor_name, "Name of actor:" %>
   <%= text_field_tag :actor_name, nil, placeholder: "Al Pacino (for example)" %>
   <%= submit_tag "Submit actor name" %>
 <% end %>
-
-<br><br>
-Sessions Demo
-<%= link_to "Click here", new_session_path %>

@@ -216,18 +216,23 @@ def prepare_movie_hash(movie_id)
 end
 
 def get_json_from_rt_movie_alias(imdb_movie_id)
-  request_url = "http://api.rottentomatoes.com/api/public/v1.0/"
-  request_url += "movie_alias.json?apikey=" + ENV['rt_key']
-  request_url += "&type=imdb&id=" + imdb_movie_id
+  begin
+    request_url = "http://api.rottentomatoes.com/api/public/v1.0/"
+    request_url += "movie_alias.json?apikey=" + ENV['rt_key']
+    request_url += "&type=imdb&id=" + imdb_movie_id
 
-  resp = Net::HTTP.get_response(URI(request_url))
-  return JSON(resp.body)
+    resp = Net::HTTP.get_response(URI(request_url))
+    return JSON(resp.body)
+  rescue TypeError
+    puts "No imdb id"
+    return false
+  end
 end
 
 
 def check_if_rt_scores_exist_and_return(imdb_movie_id)
-  rt_json = get_json_from_rt_movie_alias(imdb_movie_id)
   begin
+    rt_json = get_json_from_rt_movie_alias(imdb_movie_id)
     critics_score = rt_json['ratings']['critics_score']
   rescue NoMethodError
     puts "No method error"
