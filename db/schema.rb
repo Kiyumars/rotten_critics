@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110235115) do
+ActiveRecord::Schema.define(version: 20150111110141) do
 
   create_table "actors", force: true do |t|
     t.string   "name"
     t.string   "tmdb_id"
     t.string   "imdb_id"
     t.text     "bio"
-    t.string   "movies"
+    t.text     "movies",     limit: 255
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
