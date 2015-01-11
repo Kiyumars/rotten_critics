@@ -5,7 +5,7 @@ Pacino:
   tmdb_id: "22"
   imdb_id: "3232"
   bio: "ndajndsjnasdjs"
-  movies: MyString
+  movies: ["1813", "3489", "11162"]
   birthday: 2015-01-02
 
 two:
