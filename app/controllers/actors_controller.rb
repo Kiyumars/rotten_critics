@@ -11,8 +11,6 @@ class ActorsController < ApplicationController
   end
 
   def create
-
-
     actor_in_db = Actor.find_by(:name => params[:actor_name].downcase)
     if actor_in_db.nil?
       if !check_if_actor_exists(params[:actor_name])
@@ -22,13 +20,12 @@ class ActorsController < ApplicationController
       end
       create_new_actor_model(params[:actor_name].downcase)
       render 'create'
-      find_and_print_tmdb_movie_info(@actor.movies)
+      find_and_store_tmdb_movie_info(@actor.movies)
 
 
     else
       @actor = actor_in_db
       render 'create'
-      find_and_print_tmdb_movie_info(@actor.movies)
     end
   end
 
@@ -41,7 +38,24 @@ class ActorsController < ApplicationController
   def destroy
   end
 
+  def find_and_store_tmdb_movie_info(actor_filmography)
+
+    actor_filmography.each do |movie_id|
+      movie = prepare_movie_hash(movie_id)
+      if !movie.nil?
+        Movie.create(:imdb_id => movie["imdb_id"].to_s, :tmdb_id => movie["id"].to_s,
+                      :overview => movie["overview"], :tagline => movie["tagline"],
+                      :title => movie["title"], :poster_path => movie["poster_path"],
+                      :critics_score => movie["critics_score"],
+                      :audience_score => movie["audience_score"],
+                      :cast => movie["cast"], :directors => movie["directors"],
+                      :screenwriters => movie["screenwriters"],
+                      :trailer => movie["trailer"])
+      end
+    end
+  end
 end
+
 
 
 def create_new_actor_model(actor_name)
@@ -193,7 +207,7 @@ def prepare_movie_hash(movie_id)
   get_casts_info(movie_hash, movie_id)
   get_videos(movie_hash, movie_id)
 
-  puts movie_hash
+  return movie_hash
 end
 
 def get_json_from_rt_movie_alias(imdb_movie_id)
@@ -261,14 +275,3 @@ def add_rt_info(imdb_movie_id, movie_hash)
   return critics_score, audience_score
 end
 
-def find_and_print_tmdb_movie_info(actor_filmography)
-  # movie_ids_list = Array.new
-
-  # actor_filmography['cast'].each do |movie_dict|
-  #   movie_ids_list.push(movie_dict['id'].to_s)
-  # end
-
-  actor_filmography.each do |movie_id|
-    prepare_movie_hash(movie_id)
-  end
-end
