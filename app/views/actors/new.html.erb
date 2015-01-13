@@ -1,5 +1,5 @@
 Enter the name of the actor/actress. <br>
-<%= form_tag(create_actor_path) do %>
+<%= form_tag('/actors') do %>
   <%= label_tag :actor_name, "Name of actor:" %>
   <%= text_field_tag :actor_name, nil, placeholder: "Al Pacino (for example)" %>
   <%= submit_tag "Submit actor name" %>

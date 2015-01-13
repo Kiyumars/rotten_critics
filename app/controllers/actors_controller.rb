@@ -19,23 +19,15 @@ class ActorsController < ApplicationController
         return
       end
       create_new_actor_model(params[:actor_name].downcase)
-      render 'create'
+      redirect_to actor_path(@actor.tmdb_id)
       find_and_store_tmdb_movie_info(@actor.movies)
-
-
     else
       @actor = actor_in_db
-      render 'create'
+      redirect_to actor_path(@actor.tmdb_id)
     end
   end
 
   def show
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   def find_and_store_tmdb_movie_info(actor_filmography)
@@ -81,6 +73,7 @@ def create_new_actor_model(actor_name)
                           birthday: @actor_json["birthday"], movies: @film_list)
       @actor.save
 end
+
 
 def check_if_actor_exists(actor_name)
   actor_name = params[:actor_name].downcase.scan(/\w+[a-zA-Z]/)
