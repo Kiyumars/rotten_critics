@@ -1,2 +1,6 @@
-<h1>Hello, there!</h1>
-<p>Find me in app/views/actors/show.html.erb</p>
+<p>We need to get this actor's movies from the database. Please press the submit button.</p><br>
+<%= form_tag('/movies') do %>
+  <%= hidden_field_tag(:tmdb_id, @actor.tmdb_id)%>
+  <%= submit_tag("Let's get the movies.") %>
+<%end%>
+<%= @actor.bio %>

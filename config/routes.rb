@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # delete "destroy_actor"  => "actor#destroy"
 
   resources :actors, only: [:new, :create, :show]
+  resources :movies, only: [:create]
 
 
 end

@@ -1,42 +1,11 @@
+class MoviesController < ApplicationController
 
-require 'json'
-require 'uri'
+	def create
+		find_and_store_tmdb_movie_info(params[:tmdb_id])
+	end
 
-require 'net/http'
-
-
-
-class ActorsController < ApplicationController
-  # after_filter :find_and_store_tmdb_movie_info, only: [:show]
-
-  def new
-  end
-
-  def create
-    actor_in_db = Actor.find_by(:name => params[:actor_name].downcase)
-    if actor_in_db.nil?
-      if !check_if_actor_exists(params[:actor_name])
-        flash[:danger] = "Actor does not exist. Try again."
-        redirect_to new_actor_path
-        return
-      end
-      create_new_actor_model(params[:actor_name].downcase)
-      redirect_to actor_path(@actor.tmdb_id)
-
-    else
-      @actor = actor_in_db
-      # redirect_to actor_path(@actor.tmdb_id)
-    end
-  end
-
-  def show
-    @actor = Actor.find_by(:tmdb_id => params[:id])
-    # render 'show'
-    # redirect_to create_movies_path(@actor.tmdb_id)
-  end
-
-  def find_and_store_tmdb_movie_info
-    actor_filmography = Actor.find_by(:tmdb_id => params[:id]).movies
+	def find_and_store_tmdb_movie_info(tmdb_id)
+    actor_filmography = Actor.find_by(tmdb_id).movies
     actor_filmography.each do |movie_id|
       movie = prepare_movie_hash(movie_id)
       if !movie.nil?
@@ -58,51 +27,6 @@ class ActorsController < ApplicationController
   end
 end
 
-
-
-def create_new_actor_model(actor_name)
-      actor_name = params[:actor_name].downcase.scan(/\w+[a-zA-Z]/)
-      actor_url =  prepare_actor_url_parameter_for_tmdb(actor_name)
-      actor_object = search_tmdb_for_actor_and_return_filmography(actor_url)
-      if actor_object.nil?
-        redirect_to new_actor_path
-        return nil
-      end
-      @actor_json, @biography, @filmography = actor_object
-      @film_list = Array.new
-      @filmography["cast"].each do |movie_id|
-        @film_list.push(movie_id['id'].to_s)
-      end
-      @actor = Actor.new( name: @actor_json["name"].downcase, tmdb_id: @actor_json["id"],
-                          imdb_id: @actor_json["imdb_id"], bio: @actor_json["biography"],
-                          birthday: @actor_json["birthday"], movies: @film_list)
-      @actor.save
-end
-
-
-def check_if_actor_exists(actor_name)
-  actor_name = params[:actor_name].downcase.scan(/\w+[a-zA-Z]/)
-  actor_parameter =  prepare_actor_url_parameter_for_tmdb(actor_name)
-  search_actor = request_tmdb_json("search/person", actor_parameter)
-  if search_actor["total_results"] < 1
-    return false
-  else
-    return search_actor
-  end
-end
-
-def search_tmdb_for_actor_and_return_filmography(actor_parameter)
-  search_actor = request_tmdb_json("search/person", actor_parameter)
-  actor_id = search_actor['results'][0]['id'].to_s
-  actor_biography_request_url = "person/" + actor_id
-  actor_json = request_tmdb_json(actor_biography_request_url)
-  biography = actor_json['biography']
-  actor_filmography_request_url = "person/" + actor_id + "/movie_credits"
-  actor_filmography = request_tmdb_json(actor_filmography_request_url)
-  return actor_json, biography, actor_filmography
-end
-
-
 def request_tmdb_json(request_type_url, extra_url='')
   request_url = "http://api.themoviedb.org/3/"
   request_url += request_type_url
@@ -112,11 +36,6 @@ def request_tmdb_json(request_type_url, extra_url='')
 
   resp = Net::HTTP.get_response(URI(request_url))
   return JSON(resp.body)
-end
-
-
-def prepare_actor_url_parameter_for_tmdb(actor_name_list)
-  url_parameter = "&query=" + actor_name_list.join("+")
 end
 
 def get_basic_movie_info(movie_hash, movie_id)
@@ -285,4 +204,3 @@ def add_rt_info(imdb_movie_id, movie_hash)
 
   return critics_score, audience_score
 end
-
