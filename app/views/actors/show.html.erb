@@ -1,6 +1,13 @@
-<p>We need to get this actor's movies from the database. Please press the submit button.</p><br>
+
 <%= form_tag('/movies') do %>
+  <p>We need to get this actor's movies from the database. Please press the submit button. <%= submit_tag("Let's get the movies.") %></p>
   <%= hidden_field_tag(:tmdb_id, @actor.tmdb_id)%>
-  <%= submit_tag("Let's get the movies.") %>
+
 <%end%>
 <%= @actor.bio %>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    window.document.forms[0].submit();
+  });
+</script>
