@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'games/new'
+
+  get 'games/create'
+
+  get 'games/edit'
+
+  get 'games/update'
+
+  get 'games/destroy'
+
   root "actors#new"
   get "new_game"        	=> "game_rounds#new"
   post "players"        	=> "game_rounds#create"
