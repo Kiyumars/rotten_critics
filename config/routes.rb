@@ -1,16 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'games/new'
-
-  get 'games/create'
-
-  get 'games/edit'
-
-  get 'games/update'
-
-  get 'games/destroy'
-
-  root "actors#new"
+  root "games#new"
   get "new_game"        	=> "game_rounds#new"
   post "players"        	=> "game_rounds#create"
   get "allplayers"     		=> "game_rounds#show"
@@ -28,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :actors, only: [:new, :create, :show]
   resources :movies, only: [:create]
+  resources :games,  only: [:new, :create, :edit, :update, :destroy]
 
 
 end

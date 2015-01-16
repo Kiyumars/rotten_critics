@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111110141) do
+ActiveRecord::Schema.define(version: 20150116113753) do
 
   create_table "actors", force: true do |t|
     t.string   "name"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20150111110141) do
     t.text     "bio"
     t.text     "movies",     limit: 255
     t.date     "birthday"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: true do |t|
+    t.string   "game_id"
+    t.string   "movies"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

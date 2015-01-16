@@ -276,7 +276,7 @@ def add_rt_info(imdb_movie_id, movie_hash)
   end
   critics_score, audience_score, rt_movie_id = reviews_on_rt
 
-  if ! check_if_six_reviews_exist(rt_movie_id) then
+  if !check_if_six_reviews_exist(rt_movie_id) then
     puts "Less than six reviews"
     puts imdb_movie_id
 
