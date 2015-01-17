@@ -1,10 +1,13 @@
 class MoviesController < ApplicationController
 
 	def create
-		find_and_store_tmdb_movie_info(params[:tmdb_id])
+		# find_and_store_tmdb_movie_info(params[:tmdb_id])
 	end
 
   def edit
+    @game_session = Game.find(params[:game_id])
+    @movie = Movie.find_by(:tmdb_id => params[:id])
+    @players = @game_session.players
   end
 
   def update

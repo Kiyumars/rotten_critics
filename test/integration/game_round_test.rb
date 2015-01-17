@@ -19,8 +19,13 @@ class GameRoundTest < ActionDispatch::IntegrationTest
   	assert_response :success
   	assert_difference ["Game.count", "Player.count"], 1 do
   		post games_path, { "actor_name" => @existing_actor,
-  													player_names: @one_valid_name }
+  													players: @one_valid_name }
   	end
+    follow_redirect!
+    assert_template 'edit'
+    assert_select player.name
+    assert_select player.guess
+    assert_select player.id
   end
 
   # test "succesfully play one round with existing actor name" do

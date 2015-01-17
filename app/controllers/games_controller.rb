@@ -40,9 +40,9 @@ class GamesController < ApplicationController
   end
 end
 
-def find_and_store_tmdb_movie_info
-  actor_filmography = Actor.find_by(:tmdb_id => params[:id]).movies
-  actor_filmography.each do |movie_id|
+def find_and_store_tmdb_movie_info(movie_id)
+  # actor_filmography = Actor.find_by(:tmdb_id => params[:id]).movies
+  # actor_filmography.each do |movie_id|
     movie = prepare_movie_hash(movie_id)
     if !movie.nil?
       Movie.create(:imdb_id => movie["imdb_id"].to_s,
@@ -59,7 +59,7 @@ def find_and_store_tmdb_movie_info
                     :trailer => movie["trailer"],
                     :release_date => movie["release_date"])
     end
-  end
+  # end
 end
 
 def create_new_actor_model(actor_name)
@@ -73,7 +73,11 @@ def create_new_actor_model(actor_name)
       @actor_json, @biography, @filmography = actor_object
       @film_list = Array.new
       @filmography["cast"].each do |movie_id|
-        @film_list.push(movie_id['id'].to_s)
+        if find_and_store_tmdb_movie_info(movie_id['id'].to_s)
+          @film_list.push(movie_id['id'].to_s)
+        else
+          next
+        end
       end
       @actor = Actor.new( name: @actor_json["name"].downcase, tmdb_id: @actor_json["id"],
                           imdb_id: @actor_json["imdb_id"], bio: @actor_json["biography"],
