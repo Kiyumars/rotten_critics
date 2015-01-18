@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  game_id: MyString
-  movies: MyString
+  game_id: 1
+  movies: ["1813", "3489", "11162"]
 
 two:
   game_id: MyString

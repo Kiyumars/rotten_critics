@@ -2,20 +2,20 @@ require 'test_helper'
 
 class ActorsControllerTest < ActionController::TestCase
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+  # test "should get new" do
+  #   get :new
+  #   assert_response :success
+  # end
 
-  test "should post actor name to create" do
-    post :create, actor_name: "Al Pacino"
-    assert_response :success
-  end
+  # test "should post actor name to create" do
+  #   post :create, actor_name: "Al Pacino"
+  #   assert_response :success
+  # end
 
-  test "should get show" do
-    get :show
-    assert_response :success
-  end
+  # test "should get show" do
+  #   get :show
+  #   assert_response :success
+  # end
 
   # test "should get update" do
   #   get :update

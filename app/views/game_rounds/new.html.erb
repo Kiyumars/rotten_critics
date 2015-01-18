@@ -1,8 +1,0 @@
-Let's play a game. Enter the names of all player, seperated by a comma.
-
-<%= form_tag players_path do %>
-  <%= text_field_tag :players, "Kiyu", placeholder: "Tom, Dick, Harry" %> <br>
-  And now enter any actor or actress. <br>
-  <%= text_field_tag :actor, "Al Pacino", placeholder: "Al Pacino" %> <br> <br>
-  <%= submit_tag "Let's play the game." %>
-<%end%>

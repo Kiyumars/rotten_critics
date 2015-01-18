@@ -3,18 +3,22 @@ class GamesController < ApplicationController
   end
 
   def create
+    if params[:players].blank?
+      flash[:danger] = "Please enter at least one player name."
+      redirect_to new_game_path
+      return
+    end
+
     actor_in_db = Actor.find_by(:name => params[:actor_name].downcase)
     if actor_in_db.nil?
       if !check_if_actor_exists(params[:actor_name])
         flash[:danger] = "Actor does not exist. Try again."
-        redirect_to new_actor_path
+        redirect_to new_game_path
         return
       end
       create_new_actor_model(params[:actor_name].downcase)
-      # redirect_to actor_path(@actor.tmdb_id)
     else
       @actor = actor_in_db
-      # redirect_to actor_path(@actor.tmdb_id)
     end
 
     @game_id =  ('a'..'z').to_a.shuffle[0..7].join
@@ -41,25 +45,22 @@ class GamesController < ApplicationController
 end
 
 def find_and_store_tmdb_movie_info(movie_id)
-  # actor_filmography = Actor.find_by(:tmdb_id => params[:id]).movies
-  # actor_filmography.each do |movie_id|
-    movie = prepare_movie_hash(movie_id)
-    if !movie.nil?
-      Movie.create(:imdb_id => movie["imdb_id"].to_s,
-                    :tmdb_id => movie["id"].to_s,
-                    :overview => movie["overview"],
-                    :tagline => movie["tagline"],
-                    :title => movie["title"],
-                    :poster_path => movie["poster_path"],
-                    :critics_score => movie["critics_score"],
-                    :audience_score => movie["audience_score"],
-                    :cast => movie["cast"],
-                    :directors => movie["directors"],
-                    :screenwriters => movie["screenwriters"],
-                    :trailer => movie["trailer"],
-                    :release_date => movie["release_date"])
-    end
-  # end
+  movie = prepare_movie_hash(movie_id)
+  if !movie.nil?
+    Movie.create(:imdb_id => movie["imdb_id"].to_s,
+                  :tmdb_id => movie["id"].to_s,
+                  :overview => movie["overview"],
+                  :tagline => movie["tagline"],
+                  :title => movie["title"],
+                  :poster_path => movie["poster_path"],
+                  :critics_score => movie["critics_score"],
+                  :audience_score => movie["audience_score"],
+                  :cast => movie["cast"],
+                  :directors => movie["directors"],
+                  :screenwriters => movie["screenwriters"],
+                  :trailer => movie["trailer"],
+                  :release_date => movie["release_date"])
+  end
 end
 
 def create_new_actor_model(actor_name)

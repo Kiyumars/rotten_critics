@@ -14,6 +14,14 @@ class GameRoundTest < ActionDispatch::IntegrationTest
     @invalid_actor = "Ermagehrd Goofbumpths"
   end
 
+  test "Enter actor name already in db" do
+    assert_no_difference "Actor.count" do
+      post games_path, { :actor_name => @existing_actor,
+                         :players    => @one_valid_name }
+
+    end
+  end
+
   test "create a game session" do
   	get new_game_path
   	assert_response :success
@@ -23,9 +31,7 @@ class GameRoundTest < ActionDispatch::IntegrationTest
   	end
     follow_redirect!
     assert_template 'edit'
-    assert_select player.name
-    assert_select player.guess
-    assert_select player.id
+    assert_select "form input"
   end
 
   # test "succesfully play one round with existing actor name" do
