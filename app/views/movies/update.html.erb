@@ -1,0 +1,7 @@
+<h1>Score</h1>
+
+<p>The correct score for <%= @movie.title %> is <b><%= @correct_score %></b></p>
+
+<% @players.each do |player| %>
+  <p><%= player.name %>'s score is now <%= player.score %></p>
+<% end %>

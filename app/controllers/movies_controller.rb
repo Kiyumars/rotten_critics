@@ -18,16 +18,16 @@ class MoviesController < ApplicationController
     @players = @game_session.players
     guesses = players_guesses
     @players.each do |game_player|
-      puts "What is game player?"
+      # puts "What is game player?"
       puts game_player
-      puts "What is the parameter"
-      puts guesses
+      # puts "What is the parameter"
+      # puts guesses
       guess = guesses[game_player.id.to_s]["guess"]
-      puts "What is the guess?"
-      puts guess
+      # puts "What is the guess?"
+      # puts guess
       penalty_points = (@correct_score - guess.to_i).abs
-      puts "What are the penalty points?"
-      puts penalty_points
+      # puts "What are the penalty points?"
+      # puts penalty_points
       game_player.update_attribute(:score, penalty_points)
     end
   end

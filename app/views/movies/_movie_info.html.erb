@@ -5,9 +5,10 @@
   <%end%>
 <%end%>
 
-<% ['poster_path', 'trailer'].each do |media_key| %>
-  <% if @movie[media_key] %>
-    <p><b> <%= media_key.capitalize %>: </b> <%= link_to('Link', @movie[media_key], :target => "_blank") %> </p>
-  <%end%>
-<%end%>
-
+<p>
+	<% ['poster_path', 'trailer'].each do |media_key| %>
+	  <% if @movie[media_key] %>
+	    <b> <%= media_key.capitalize %>: </b> <%= link_to('Link', @movie[media_key], :target => "_blank") %>
+	  <%end%>
+	<%end%>
+</p>
