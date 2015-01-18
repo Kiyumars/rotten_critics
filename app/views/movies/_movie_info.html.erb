@@ -11,4 +11,5 @@
 	<% @players.each do |player| %>
 		<p><%= player.name %>: <input id='player_<%= player.id%>_guess' name='player[<%= player.id %>][guess]'><p>
 	<%end%>
+	<%= submit_tag "Enter the scores!" %>
 <%end%>

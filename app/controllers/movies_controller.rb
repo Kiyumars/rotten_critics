@@ -11,29 +11,32 @@ class MoviesController < ApplicationController
   end
 
   def update
+    @game_session = Game.find(params[:game_id])
+    @movie = Movie.find_by(:tmdb_id => params[:id])
+    @correct_score = @movie.critics_score
+
+    @players = @game_session.players
+    guesses = players_guesses
+    @players.each do |game_player|
+      puts "What is game player?"
+      puts game_player
+      puts "What is the parameter"
+      puts guesses
+      guess = guesses[game_player.id.to_s]["guess"]
+      puts "What is the guess?"
+      puts guess
+      penalty_points = (@correct_score - guess.to_i).abs
+      puts "What are the penalty points?"
+      puts penalty_points
+      game_player.update_attribute(:score, penalty_points)
+    end
   end
 
-	# def find_and_store_tmdb_movie_info(tmdb_id)
- #    actor_filmography = Actor.find_by(tmdb_id).movies
- #    actor_filmography.each do |movie_id|
- #      movie = prepare_movie_hash(movie_id)
- #      if !movie.nil?
- #        Movie.create(:imdb_id => movie["imdb_id"].to_s,
- #                      :tmdb_id => movie["id"].to_s,
- #                      :overview => movie["overview"],
- #                      :tagline => movie["tagline"],
- #                      :title => movie["title"],
- #                      :poster_path => movie["poster_path"],
- #                      :critics_score => movie["critics_score"],
- #                      :audience_score => movie["audience_score"],
- #                      :cast => movie["cast"],
- #                      :directors => movie["directors"],
- #                      :screenwriters => movie["screenwriters"],
- #                      :trailer => movie["trailer"],
- #                      :release_date => movie["release_date"])
- #      end
- #    end
- #  end
+	private
+
+  def players_guesses
+      params.require(:player)
+  end
 end
 
 # def request_tmdb_json(request_type_url, extra_url='')
