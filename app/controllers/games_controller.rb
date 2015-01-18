@@ -29,7 +29,7 @@ class GamesController < ApplicationController
       # @player = Player.create!(:game_id => game_id, :name => player, :score => 0)
       @game_session.players.create( :name => player, :score => 0)
     end
-    first_movie = @game_session.movies.pop
+    first_movie = @game_session.movies.sample
 
     redirect_to edit_game_movie_path(@game_session.id, first_movie)
   end
