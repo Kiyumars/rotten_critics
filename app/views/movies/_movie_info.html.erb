@@ -1,7 +1,13 @@
 <h1><%= @movie.title %></h1>
-<% ['directors', 'cast', 'screenwriters', 'overview']. each do |movie_key| %>
+<% ['directors', 'cast', 'screenwriters', 'overview', 'tagline']. each do |movie_key| %>
   <%if @movie[movie_key] %>
     <p><b><%= movie_key.capitalize %>: </b> <%= @movie[movie_key]%></p>
   <%end%>
 <%end%>
-<p><b>Poster: </b><%= link_to('Link', @movie.poster_path) %></p>
+
+<% ['poster_path', 'trailer'].each do |media_key| %>
+  <% if @movie[media_key] %>
+    <p><b> <%= media_key.capitalize %>: </b> <%= link_to('Link', @movie[media_key], :target => "_blank") %> </p>
+  <%end%>
+<%end%>
+
