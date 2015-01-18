@@ -24,6 +24,11 @@ class MoviesController < ApplicationController
     guesses = players_guesses
     @players.each do |game_player|
       guess = guesses[game_player.id.to_s]["guess"]
+      if guess.empty? || !is_number?(guess.to_i) || guess.to_i < 0 || guess.to_i > 100
+        flash[:danger] = "Please enter a number between 0 and 100."
+        render 'edit'
+        return
+      end
       penalty_points = (@correct_score - guess.to_i).abs
       game_player.update_attribute(:score, game_player.score + penalty_points)
     end
@@ -33,6 +38,10 @@ class MoviesController < ApplicationController
 
   def players_guesses
       params.require(:player)
+  end
+
+  def is_number?(string)
+    "/^[\d]+" =~ string
   end
 end
 
