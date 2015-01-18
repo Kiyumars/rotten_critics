@@ -1,7 +1,12 @@
 class MoviesController < ApplicationController
 
+  def new
+    game_session = params[:game_id]
+    new_movie_id = Game.find(game_session).movies.sample
+    redirect_to edit_game_movie_path(game_session, new_movie_id)
+  end
+
 	def create
-		# find_and_store_tmdb_movie_info(params[:tmdb_id])
 	end
 
   def edit

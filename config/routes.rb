@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   # resources :actors, only: [:new, :create, :show]
   # resources :movies, only: [:create]
   resources :games,  only: [:new, :create, :destroy] do
-    resources :movies, only: [:create, :edit, :update]
+    resources :movies, only: [:new, :create, :edit, :update]
   end
 end

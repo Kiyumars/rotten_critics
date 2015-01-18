@@ -5,3 +5,5 @@
 <% @players.each do |player| %>
   <p><%= player.name %>'s score is now <%= player.score %></p>
 <% end %>
+
+<%= link_to "New round!", new_game_movie_path(params[:game_id]) %>
