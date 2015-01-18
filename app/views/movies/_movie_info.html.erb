@@ -1,15 +1,7 @@
 <h1><%= @movie.title %></h1>
-<p><b>Directors: </b><%= @movie.directors %></p>
-<p><b>Cast: </b><%= @movie.cast %></p>
-<p><b>Screenwriters: </b><%= @movie.screenwriters %></p>
-<p><b>Poster: </b><%= link_to('Link', @movie.poster_path) %></p>
-<p><b>Plot: </b><%= @movie.overview %> </p>
-
-<h2>Make your guess!</h2>
-
-<%= form_tag game_movie_path(@game_session.id, @movie.tmdb_id), method: :patch do %>
-	<% @players.each do |player| %>
-		<p><%= player.name %>: <input id='player_<%= player.id%>_guess' name='player[<%= player.id %>][guess]'><p>
-	<%end%>
-	<%= submit_tag "Enter the scores!" %>
+<% ['directors', 'cast', 'screenwriters', 'overview']. each do |movie_key| %>
+  <%if @movie[movie_key] %>
+    <p><b><%= movie_key.capitalize %>: </b> <%= @movie[movie_key]%></p>
+  <%end%>
 <%end%>
+<p><b>Poster: </b><%= link_to('Link', @movie.poster_path) %></p>

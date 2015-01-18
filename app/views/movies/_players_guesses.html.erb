@@ -1,0 +1,8 @@
+<h2>Make your guess!</h2>
+
+<%= form_tag game_movie_path(@game_session.id, @movie.tmdb_id), method: :patch do %>
+	<% @players.each do |player| %>
+		<p><%= player.name %>: <input id='player_<%= player.id%>_guess' name='player[<%= player.id %>][guess]'><p>
+	<%end%>
+	<%= submit_tag "Enter the scores!" %>
+<%end%>
