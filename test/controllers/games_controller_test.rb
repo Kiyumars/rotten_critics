@@ -38,6 +38,12 @@ class GamesControllerTest < ActionController::TestCase
     end
   end
 
+  test "create a game session" do
+    assert_difference "Game.count", 1 do
+      post :create, :players => @valid_player_names, :actor_name => @existing_actor
+    end
+  end
+
   # test "should get edit" do
   #   get :edit
   #   assert_response :success
