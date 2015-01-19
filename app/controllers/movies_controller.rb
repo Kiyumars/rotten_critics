@@ -24,8 +24,8 @@ class MoviesController < ApplicationController
     guesses = players_guesses
     @players.each do |game_player|
       guess = guesses[game_player.id.to_s]["guess"]
-      if guess.empty? || !is_number?(guess.to_i) || guess.to_i < 0 || guess.to_i > 100
-        flash[:danger] = "Please enter a number between 0 and 100."
+      if guess.empty? || !is_number?(guess.to_s) || guess.to_i < 0 || guess.to_i > 100
+        flash.now[:danger] = "Please enter a number between 0 and 100."
         render 'edit'
         return
       end
@@ -41,7 +41,7 @@ class MoviesController < ApplicationController
   end
 
   def is_number?(string)
-    "/^[\d]+" =~ string
+    string =~ /\A\d+\z/ ? true : false
   end
 end
 
