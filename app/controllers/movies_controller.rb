@@ -2,7 +2,8 @@ class MoviesController < ApplicationController
 
   def new
     game_session = params[:game_id]
-    game_movies = Game.find(game_session).movies
+    game_model = Game.find(game_session)
+    game_movies = game_model.movies
     if game_model.movies.count < 1
       flash[:danger] = "No more movies left! Choose another actor or actress!"
       redirect_to new_game_path

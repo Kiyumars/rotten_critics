@@ -30,6 +30,8 @@ class GamesController < ApplicationController
       @game_session.players.create( :name => player, :score => 0)
     end
     first_movie = @game_session.movies.sample
+    @game_session.movies.delete(first_movie)
+    @game_session.update_attribute(:movies, @game_session.movies)
 
     redirect_to edit_game_movie_path(@game_session.id, first_movie)
   end
