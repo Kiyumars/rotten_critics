@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120180229) do
+ActiveRecord::Schema.define(version: 20150120185856) do
 
   create_table "actors", force: true do |t|
     t.string   "name"
     t.string   "tmdb_id"
     t.string   "imdb_id"
     t.text     "bio"
-    t.text     "movies"
+    t.text     "movies",     limit: 255
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150120180229) do
 
   create_table "games", force: true do |t|
     t.string   "game_id"
-    t.text     "movies"
+    t.text     "movies",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20150120180229) do
     t.integer  "critics_score"
     t.integer  "audience_score"
     t.string   "cast"
-    t.string   "directors"
-    t.string   "screenwriters"
+    t.string   "director"
+    t.string   "screenwriter"
     t.string   "trailer"
     t.datetime "created_at"
     t.datetime "updated_at"

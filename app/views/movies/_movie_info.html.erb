@@ -12,12 +12,14 @@
 <%end%>
 
 <p>
-	<% ['directors', 'screenwriters'].each do |movie_key| %>
-
-		  <%if !@movie[movie_key].blank? %>
-		    <b><%= "Director".pluralize(@movie[movie_key].scan(/\w+[a-zA-Z]\s\w+[a-zA-Z]/))%>: </b> <%= @movie[movie_key]%>
+	<% ['director', 'screenwriter'].each do |movie_key| %>
+		  <% if !@movie[movie_key].blank? %>
+		  	<%if @movie[movie_key].scan(/\w+[a-zA-Z]\s\w+[a-zA-Z]/).count > 1%>
+		  		<b><%= movie_key.pluralize.capitalize %>: </b> <%= @movie[movie_key]%>
+		  	<%else%>
+		  	  <b><%= movie_key.capitalize %>: </b> <%= @movie[movie_key]%>
+		  	<%end%>
 		  <%end%>
-
 	<%end%>
 </p>
 
