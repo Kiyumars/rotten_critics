@@ -1,13 +1,29 @@
 <h1><%= @movie.title %></h1>
-<% ['directors', 'cast', 'screenwriters', 'overview', 'tagline']. each do |movie_key| %>
-  <%if @movie[movie_key] %>
+
+<% if !@movie.tagline.blank? %>
+	<p><b>Tagline: </b> <%= @movie.tagline %></p>
+<%end%>
+
+
+<% ['cast', 'overview'].each do |movie_key| %>
+  <%if !@movie[movie_key].blank? %>
     <p><b><%= movie_key.capitalize %>: </b> <%= @movie[movie_key]%></p>
   <%end%>
 <%end%>
 
 <p>
+	<% ['directors', 'screenwriters'].each do |movie_key| %>
+
+		  <%if !@movie[movie_key].blank? %>
+		    <b><%= "Director".pluralize(@movie[movie_key].scan(/\w+[a-zA-Z]\s\w+[a-zA-Z]/))%>: </b> <%= @movie[movie_key]%>
+		  <%end%>
+
+	<%end%>
+</p>
+
+<p>
 	<% ['poster_path', 'trailer'].each do |media_key| %>
-	  <% if @movie[media_key] %>
+	  <% if !@movie[media_key].blank? %>
 	    <b> <%= media_key.capitalize %>: </b> <%= link_to('Link', @movie[media_key], :target => "_blank") %>
 	  <%end%>
 	<%end%>
