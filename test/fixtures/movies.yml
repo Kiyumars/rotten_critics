@@ -1,10 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 Scent:
-  tmdb_id: 11162
-  imdb_id: 12344
+  tmdb_id: '11162'
+  imdb_id: '12344'
   title: Scent
-  overview: MyText
+  overview: "Lorem Ipsum"
   release_date: 2015-01-11
   tagline: MyString
   poster_path: MyString
@@ -15,17 +15,33 @@ Scent:
   screenwriters: MyString
   trailer: MyString
 
-two:
-  tmdb_id: MyString
-  imdb_id: MyString
-  title: MyString
+Justice:
+  tmdb_id: "3489"
+  imdb_id: tt123
+  title: "Justice for all"
+  overview: "Lorem Ipsum"
+  release_date: 2015-01-11
+  tagline: MyString
+  poster_path: MyString
+  critics_score: 23
+  audience_score: 45
+  cast: "Lorem Ipsum"
+  directors: "Lorem Ipsum"
+  screenwriters: "Lorem Ipsum"
+  trailer: "Lorem Ipsum"
+
+Heat:
+  tmdb_id: "3489"
+  imdb_id: tt234
+  title: "Heat"
   overview: MyText
   release_date: 2015-01-11
   tagline: MyString
   poster_path: MyString
-  critics_score: 1
-  audience_score: 1
+  critics_score: 67
+  audience_score: 23
   cast: MyString
   directors: MyString
   screenwriters: MyString
   trailer: MyString
+

@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+first_player:
   name: Larry
   game_id: 1
   score: 0
+  game: first_game
 
 two:
   name: MyString
   game_id: MyString
   score: 1
+  game: first_game
