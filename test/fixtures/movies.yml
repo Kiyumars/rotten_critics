@@ -11,8 +11,8 @@ Scent:
   critics_score: 1
   audience_score: 1
   cast: MyString
-  directors: MyString
-  screenwriters: MyString
+  director: MyString
+  screenwriter: MyString
   trailer: MyString
 
 Justice:
@@ -26,8 +26,8 @@ Justice:
   critics_score: 23
   audience_score: 45
   cast: "Lorem Ipsum"
-  directors: "Lorem Ipsum"
-  screenwriters: "Lorem Ipsum"
+  director: "Lorem Ipsum"
+  screenwriter: "Lorem Ipsum"
   trailer: "Lorem Ipsum"
 
 Heat:
@@ -41,7 +41,7 @@ Heat:
   critics_score: 67
   audience_score: 23
   cast: MyString
-  directors: MyString
-  screenwriters: MyString
+  director: MyString
+  screenwriter: MyString
   trailer: MyString
 

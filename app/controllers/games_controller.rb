@@ -58,8 +58,8 @@ def find_and_store_tmdb_movie_info(movie_id)
                   :critics_score => movie["critics_score"],
                   :audience_score => movie["audience_score"],
                   :cast => movie["cast"],
-                  :directors => movie["directors"],
-                  :screenwriters => movie["screenwriters"],
+                  :director => movie["directors"],
+                  :screenwriter => movie["screenwriters"],
                   :trailer => movie["trailer"],
                   :release_date => movie["release_date"])
   end
