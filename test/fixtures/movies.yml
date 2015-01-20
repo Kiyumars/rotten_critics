@@ -7,7 +7,7 @@ Scent:
   overview: "Lorem Ipsum"
   release_date: 2015-01-11
   tagline: MyString
-  poster_path: MyString
+  poster: MyString
   critics_score: 1
   audience_score: 1
   cast: MyString
@@ -22,7 +22,7 @@ Justice:
   overview: "Lorem Ipsum"
   release_date: 2015-01-11
   tagline: MyString
-  poster_path: MyString
+  poster: MyString
   critics_score: 23
   audience_score: 45
   cast: "Lorem Ipsum"
@@ -37,7 +37,7 @@ Heat:
   overview: MyText
   release_date: 2015-01-11
   tagline: MyString
-  poster_path: MyString
+  poster: MyString
   critics_score: 67
   audience_score: 23
   cast: MyString

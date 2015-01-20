@@ -24,7 +24,7 @@
 </p>
 
 <p>
-	<% ['poster_path', 'trailer'].each do |media_key| %>
+	<% ['poster', 'trailer'].each do |media_key| %>
 	  <% if !@movie[media_key].blank? %>
 	    <b> <%= media_key.capitalize %>: </b> <%= link_to('Link', @movie[media_key], :target => "_blank") %>
 	  <%end%>

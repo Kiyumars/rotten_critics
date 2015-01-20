@@ -6,6 +6,6 @@ class ChangeColumnNamesInGamesTableToSingular < ActiveRecord::Migration
 
   def down
     rename_column :movies, :director, :directors
-    rename_column :movies, :screenwriters, :screenwriters
+    rename_column :movies, :screenwriter, :screenwriters
   end
 end

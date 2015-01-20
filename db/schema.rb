@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120185856) do
+ActiveRecord::Schema.define(version: 20150120192509) do
 
   create_table "actors", force: true do |t|
     t.string   "name"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20150120185856) do
     t.text     "overview"
     t.date     "release_date"
     t.string   "tagline"
-    t.string   "poster_path"
+    t.string   "poster"
     t.integer  "critics_score"
     t.integer  "audience_score"
     t.string   "cast"

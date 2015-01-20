@@ -54,7 +54,7 @@ def find_and_store_tmdb_movie_info(movie_id)
                   :overview => movie["overview"],
                   :tagline => movie["tagline"],
                   :title => movie["title"],
-                  :poster_path => movie["poster_path"],
+                  :poster => movie["poster_path"],
                   :critics_score => movie["critics_score"],
                   :audience_score => movie["audience_score"],
                   :cast => movie["cast"],
