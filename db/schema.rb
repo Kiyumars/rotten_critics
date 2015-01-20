@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150116113753) do
     t.string   "tmdb_id"
     t.string   "imdb_id"
     t.text     "bio"
-    t.text     "movies",     limit: 255
+    t.text     "movies"
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
