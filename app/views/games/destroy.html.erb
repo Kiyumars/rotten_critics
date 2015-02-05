@@ -1,6 +1,6 @@
 
 <% if @players.count == 1 %>
-	<p>You leave the game with <%= @winner.score %> points</p>
+	<p>You leave the game with <%= @winner.score %> penalty points.</p>
 <%else%>
 	<p><%= @winner.name %> is the winner with <%= @winner.score %> penalty points.</p>
 <%end%>

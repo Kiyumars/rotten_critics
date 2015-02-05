@@ -1,11 +1,14 @@
 <h2>Let's play a game!</h2>
+
 <%= form_tag('/games') do %>
-  Enter the name of the actor/actress. <br>
-  <%= label_tag :actor_name, "Name of actor:" %>
+  <%= label_tag :actor_name, "Enter the name of an actor/actress." %> <br>
   <%= text_field_tag :actor_name, nil,  placeholder: "e.g. Al Pacino" %> <br>
-  Now enter the names of the players.
+
+  <%= label_tag :players, "Now enter the names of the players." %> <br>
   <%= text_field_tag :players, nil, placeholder: "e.g. Tom, Dick, Harry" %> <br>
+
   <%= submit_tag "Submit actor name" %>
+
   <h2>Rules of the game</h2>
   <p>Choose an actor or actress, and enter the names of one or more players.</p>
   <p>We present you some info from one movie of that actor.</p>
