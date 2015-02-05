@@ -43,6 +43,8 @@ class GamesController < ApplicationController
   end
 
   def destroy
+    @players = Game.find(params[:id]).players
+    @winner = @players.order("score ASC").first
   end
 end
 

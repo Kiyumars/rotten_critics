@@ -2,15 +2,15 @@
 <%= form_tag('/games') do %>
   Enter the name of the actor/actress. <br>
   <%= label_tag :actor_name, "Name of actor:" %>
-  <%= text_field_tag :actor_name, "Al Pacino", placeholder: "Al Pacino (for example)" %> <br>
+  <%= text_field_tag :actor_name, nil,  placeholder: "e.g. Al Pacino" %> <br>
   Now enter the names of the players.
-  <%= text_field_tag :players, "Kiyu", placeholder: "Tom, Dick, Harry" %> <br>
+  <%= text_field_tag :players, nil, placeholder: "e.g. Tom, Dick, Harry" %> <br>
   <%= submit_tag "Submit actor name" %>
   <h2>Rules of the game</h2>
   <p>Choose an actor or actress, and enter the names of one or more players.</p>
   <p>We present you some info from one movie of that actor.</p>
   <p>Try to guess the critics score of that movie. The critics score is the percentage
- of reviews that are positive for that movie on rottentomatoes.com.</p>
+ of positive reviews on rottentomatoes.com.</p>
  <p>For every percentage you are above or below the actual critics score, you receive a penalty point.</p>
  <p>Play more rounds. At the end of the game, the player with the <b>least</b>
 amount of penalties <b>wins</b>.</p>

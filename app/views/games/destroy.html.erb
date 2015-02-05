@@ -1,2 +1,8 @@
-<h1>Games#destroy</h1>
-<p>Find me in app/views/games/destroy.html.erb</p>
+
+<% if @players.count == 1 %>
+	<p>You leave the game with <%= @winner.score %> points</p>
+<%else%>
+	<p><%= @winner.name %> is the winner with <%= @winner.score %> penalty points.</p>
+<%end%>
+
+<%= link_to "New game, new actor, new players!", root_url %>
