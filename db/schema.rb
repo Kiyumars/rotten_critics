@@ -13,25 +13,25 @@
 
 ActiveRecord::Schema.define(version: 20150120192509) do
 
-  create_table "actors", force: true do |t|
+  create_table "actors", force: :cascade do |t|
     t.string   "name"
     t.string   "tmdb_id"
     t.string   "imdb_id"
     t.text     "bio"
-    t.text     "movies",     limit: 255
+    t.text     "movies"
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "games", force: true do |t|
+  create_table "games", force: :cascade do |t|
     t.string   "game_id"
-    t.text     "movies",     limit: 255
+    t.text     "movies"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "movies", force: true do |t|
+  create_table "movies", force: :cascade do |t|
     t.string   "tmdb_id"
     t.string   "imdb_id"
     t.string   "title"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150120192509) do
     t.datetime "updated_at"
   end
 
-  create_table "players", force: true do |t|
+  create_table "players", force: :cascade do |t|
     t.string   "name"
     t.string   "game_id"
     t.integer  "score"
